@@ -40,6 +40,7 @@ import HelpCircleIconComponent from './HelpCircleIcon';
 import ExternalLinkIconComponent from './ExternalLinkIcon';
 import MinusIconComponent from './MinusIcon';
 import MailIconComponent from './MailIcon';
+// # append_icon_import
 import type { IconComponent } from '.';
 
 // add new icons here to make them visible in storybook
@@ -85,8 +86,8 @@ const iconMap: Record<string, IconComponent> = {
   RotateCounterClockWiseIcon: RotateCounterClockWiseIconComponent,
   TrendingUpIcon: TrendingUpIconComponent,
   TrendingDownIcon: TrendingDownIconComponent,
-
   UsersIcon: UsersIconComponent,
+	// # append_icon_map
 };
 
 export default iconMap;

@@ -41,6 +41,7 @@
     }
   },
   "scripts": {
+    "plop": "plop",
     "typecheck": "run-p types:typecheck:*",
     "test": "run-p test:*",
     "prepublish": "yarn build",
@@ -153,6 +154,7 @@
     "moniker": "0.1.2",
     "npm-run-all": "4.1.5",
     "outdent": "0.8.0",
+    "plop": "^3.1.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.66.5",
@@ -165,6 +167,7 @@
     "rollup-plugin-peer-deps-external": "2.2.4",
     "style-dictionary": "3.7.1",
     "styled-components": "5.3.5",
+    "svgson": "^5.2.1",
     "tsconfig-paths-webpack-plugin": "3.5.2"
   },
   "peerDependencies": {
