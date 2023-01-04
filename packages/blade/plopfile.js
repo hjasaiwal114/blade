@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const fs = require('fs');
-const open = require('open');
 const { stringify, parseSync } = require('svgson');
 const { startCase, camelCase } = require('lodash');
 const prettier = require('prettier');
@@ -34,16 +33,15 @@ const transformSvgNode = (node, components = new Set()) => {
 };
 
 const allIcons = JSON.parse(fs.readFileSync('./icons.json', { encoding: 'utf-8' }));
-const icons = allIcons.slice(0, 10).reduce((prev, curr) => {
+const icons = allIcons.reduce((prev, curr) => {
   const currentName = Object.keys(curr);
-  return {...prev, [currentName]: curr[currentName]}
+  return { ...prev, [currentName]: curr[currentName] };
 }, {});
 
 /**
  * @param {import("plop").NodePlopAPI} plop
  */
 module.exports = (plop) => {
-  plop.setGenerator('', { actions: [{}] });
   plop.setGenerator('icon', {
     description: 'Generates a icon component',
     prompts: [],
@@ -52,10 +50,13 @@ module.exports = (plop) => {
 
       Object.keys(icons).forEach((icon) => {
         const iconName = startCase(camelCase(icon)).replace(/\s/g, '');
-        console.log('---- Generating icon', iconName);
+        const filePath = `./src/components/Icons/${iconName}Icon/${iconName}Icon.tsx`;
+        const doesIconAlreadyExists = fs.existsSync(filePath);
+        console.log('FILE EXIST', filePath, doesIconAlreadyExists);
 
-        const doesIconAlreadyExists = fs.existsSync(`./src/components/Icons/${iconName}Icon`);
-        const skip = () => doesIconAlreadyExists ? `${iconName} already exists` : null;
+        const skip = () => {
+          return doesIconAlreadyExists ? `${iconName} already exists` : null;
+        };
 
         // populate the template code
         actions.push({
@@ -112,7 +113,7 @@ module.exports = (plop) => {
             let final = fileContents;
             let importedComponents = [];
 
-            const svgContents = icons[icon]; //fs.readFileSync(file, { encoding: 'utf-8' });
+            const svgContents = icons[icon];
             // parse svg contents to ast and modify the ast with transformSvgNode
             const svgAst = parseSync(svgContents, {
               camelcase: true,
@@ -139,7 +140,6 @@ module.exports = (plop) => {
             // replace template svg placeholder
             final = final.replace(/REPLACE_SVG/g, svgString);
             // update imported svg components
-            console.log(importedComponents);
             final = final.replace(/IMPORTED_SVG_COMPONENTS/g, importedComponents.join(', '));
 
             return prettier.format(final, {
