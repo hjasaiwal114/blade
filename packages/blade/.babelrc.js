@@ -143,6 +143,7 @@ const configs = {
             ssr: true,
           },
         ],
+        'babel-plugin-pure-static-props',
       ],
     },
   },

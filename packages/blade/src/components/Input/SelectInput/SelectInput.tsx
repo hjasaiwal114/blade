@@ -154,8 +154,8 @@ const _SelectInput = (
  *
  * Checkout {@link https://blade.razorpay.com/?path=/docs/components-dropdown-with-select--with-single-select SelectInput Documentation}.
  */
-const SelectInput = React.forwardRef(_SelectInput);
-// @ts-expect-error: componentId is our custom attribute
-SelectInput.componentId = 'SelectInput';
+const SelectInputWithRef = React.forwardRef(_SelectInput);
+
+const SelectInput = /*#__PURE__*/ Object.assign(SelectInputWithRef, { componentId: 'SelectInput' });
 
 export { SelectInput, SelectInputProps };
