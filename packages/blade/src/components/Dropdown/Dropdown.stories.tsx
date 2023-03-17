@@ -309,13 +309,7 @@ const DropdownTemplate: ComponentStory<typeof Playground> = (args) => {
   return (
     <BaseBox minHeight="200px">
       <Dropdown selectionType={selectionType}>
-        <SelectInput
-          label="Select Action"
-          onChange={({ name, values }) => {
-            console.log(name, values);
-          }}
-          {...selectInputArgs}
-        />
+        <SelectInput label="Select Action" {...selectInputArgs} />
         <DropdownOverlay>
           <ActionList surfaceLevel={surfaceLevel}>
             <ActionListItem
@@ -371,13 +365,7 @@ export const WithHeaderFooter = (args: AllDropdownProps): JSX.Element => {
   return (
     <BaseBox minHeight="400px">
       <Dropdown selectionType={selectionType}>
-        <SelectInput
-          label="Select Action"
-          onChange={({ name, values }) => {
-            console.log(name, values);
-          }}
-          {...selectInputArgs}
-        />
+        <SelectInput label="Select Action" {...selectInputArgs} />
         <DropdownOverlay>
           <ActionList surfaceLevel={surfaceLevel}>
             <ActionListHeader
@@ -423,7 +411,7 @@ export const WithHeaderFooter = (args: AllDropdownProps): JSX.Element => {
 };
 WithHeaderFooter.args = {
   description: 'Home sweet home it is',
-};
+} as AllDropdownProps;
 
 export const WithScrollbar = (args: AllDropdownProps): JSX.Element => {
   const {
@@ -438,13 +426,7 @@ export const WithScrollbar = (args: AllDropdownProps): JSX.Element => {
   return (
     <BaseBox minHeight="500px">
       <Dropdown selectionType={selectionType}>
-        <SelectInput
-          label="Select Action"
-          onChange={({ name, values }) => {
-            console.log(name, values);
-          }}
-          {...selectInputArgs}
-        />
+        <SelectInput label="Select Action" {...selectInputArgs} />
         <DropdownOverlay>
           <ActionList surfaceLevel={surfaceLevel}>
             <ActionListHeader
@@ -523,7 +505,7 @@ export const WithScrollbar = (args: AllDropdownProps): JSX.Element => {
 };
 WithScrollbar.args = {
   description: 'Home sweet home it is',
-};
+} as AllDropdownProps;
 
 export const WithValueDisplay = (args: AllDropdownProps): JSX.Element => {
   const [dropdownValues, setDropdownValues] = React.useState<Record<string, string[]>>({});
@@ -544,12 +526,12 @@ export const WithValueDisplay = (args: AllDropdownProps): JSX.Element => {
       <Dropdown selectionType={selectionType}>
         <SelectInput
           label="Select Action"
+          {...selectInputArgs}
           onChange={({ name, values }) => {
             if (name) {
               setDropdownValues({ [name]: values });
             }
           }}
-          {...selectInputArgs}
         />
         <DropdownOverlay>
           <ActionList surfaceLevel={surfaceLevel}>
