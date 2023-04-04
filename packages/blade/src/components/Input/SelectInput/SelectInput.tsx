@@ -58,6 +58,8 @@ const _SelectInput = (
     setHasLabelOnLeft,
   } = useDropdown();
 
+  const didSelectInputMountRef = React.useRef(false);
+
   const inputRef = useBladeInnerRef(ref, {
     onFocus: (opts) => {
       triggererRef.current?.focus(opts);
@@ -67,7 +69,10 @@ const _SelectInput = (
   const { icon, onChange, placeholder = 'Select Option', onBlur, ...baseInputProps } = props;
 
   React.useEffect(() => {
-    onChange?.({ name: props.name, values: value.split(', ') });
+    if (didSelectInputMountRef.current) {
+      onChange?.({ name: props.name, values: value.split(', ') });
+    }
+    didSelectInputMountRef.current = true;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, props.name]);
 
