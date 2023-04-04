@@ -550,12 +550,12 @@ export const WithValueDisplay = (args: AllDropdownProps): JSX.Element => {
       <Dropdown selectionType={selectionType}>
         <SelectInput
           label="Select Action"
+          {...selectInputArgs}
           onChange={({ name, values }) => {
             if (name) {
               setDropdownValues({ [name]: values });
             }
           }}
-          {...selectInputArgs}
         />
         <DropdownOverlay>
           <ActionList surfaceLevel={surfaceLevel}>

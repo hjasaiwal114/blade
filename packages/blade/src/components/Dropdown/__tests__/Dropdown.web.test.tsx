@@ -117,6 +117,48 @@ describe('<Dropdown />', () => {
     expect(onBlur).toHaveBeenCalledWith({ name: 'dropdown-select', value: 'orange' });
   });
 
+  it('should trigger onChange when selection is changed', async () => {
+    const user = userEvent.setup();
+    const onChange = jest.fn();
+
+    const { getByRole } = renderWithTheme(
+      <Dropdown>
+        <SelectInput name="dropdown-select" label="Fruits" onChange={onChange} />
+        <DropdownOverlay>
+          <ActionList>
+            <ActionListItem title="Banana" value="banana" />
+            <ActionListItem title="Orange" value="orange" />
+          </ActionList>
+        </DropdownOverlay>
+      </Dropdown>,
+    );
+
+    const selectInput = getByRole('combobox', { name: 'Fruits' });
+
+    await user.click(selectInput);
+    expect(onChange).not.toHaveBeenCalled();
+    await user.click(getByRole('option', { name: 'Orange' }));
+    expect(onChange).toHaveBeenCalledWith({ name: 'dropdown-select', values: ['orange'] });
+  });
+
+  it('should not trigger onChange for default selection', () => {
+    const onChange = jest.fn();
+
+    renderWithTheme(
+      <Dropdown>
+        <SelectInput name="dropdown-select" label="Fruits" onChange={onChange} />
+        <DropdownOverlay>
+          <ActionList>
+            <ActionListItem isDefaultSelected title="Banana" value="banana" />
+            <ActionListItem title="Orange" value="orange" />
+          </ActionList>
+        </DropdownOverlay>
+      </Dropdown>,
+    );
+
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
   it('should handle accessibility of multiselect', async () => {
     const user = userEvent.setup();
     const { container, getByRole } = renderWithTheme(

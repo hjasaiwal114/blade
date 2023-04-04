@@ -79,7 +79,7 @@ describe('<Dropdown />', () => {
     // Click on combobox
     fireEvent.press(getByRole('combobox'));
     expect(getByTestId('dropdown-overlay').props.display).toBe('flex');
-    expect(selectOnChange).toBeCalledWith({ name: 'fruits', values: [''] });
+    expect(selectOnChange).not.toBeCalled();
     expect(getByRole('combobox')).toHaveTextContent('Select Option');
 
     // Click on item
@@ -116,7 +116,7 @@ describe('<Dropdown />', () => {
     // Click on combobox
     fireEvent.press(getByRole('combobox'));
     expect(getByTestId('dropdown-overlay').props.display).toBe('flex');
-    expect(selectOnChangeHandler).toBeCalledWith({ name: 'fruits', values: [''] });
+    expect(selectOnChangeHandler).not.toBeCalled();
     expect(getByRole('combobox')).toHaveTextContent('Select Option');
 
     // Click on item
