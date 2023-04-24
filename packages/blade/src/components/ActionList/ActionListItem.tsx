@@ -345,12 +345,11 @@ const _ActionListItem = (props: ActionListItemProps): JSX.Element => {
           if (props.onClick) {
             props.onClick({ name: props.value, value: isSelected });
             setIsOpen(false);
-          } else {
-            // Let my if be lonely its readable 😤
-            // eslint-disable-next-line no-lonely-if
-            if (typeof props._index === 'number') {
-              onOptionClick(e, props._index);
-            }
+          }
+          // Let my if be lonely its readable 😤
+          // eslint-disable-next-line no-lonely-if
+          if (typeof props._index === 'number') {
+            onOptionClick(e, props._index);
           }
         })}
         {...metaAttribute({ name: MetaConstants.ActionListItem, testID: props.testID })}

@@ -312,7 +312,6 @@ const DropdownTemplate: ComponentStory<typeof Playground> = (args) => {
     <BaseBox minHeight="200px">
       <Dropdown selectionType={selectionType}>
         <SelectInput
-          label="Select Action"
           onChange={(e) => {
             console.log('onChange--', e);
           }}
@@ -323,10 +322,17 @@ const DropdownTemplate: ComponentStory<typeof Playground> = (args) => {
             console.log('oFocus--', e);
           }}
           {...selectInputArgs}
+          label="Select City"
+          placeholder="Select any one city"
         />
         <DropdownOverlay>
           <ActionList surfaceLevel={surfaceLevel}>
-            <ActionListItem
+            <ActionListItem title="Mumbai" value="settings" />
+            <ActionListItem title="Bangalore" value="info" />
+            <ActionListItem title="Pune" value="settings" />
+            <ActionListItem title="Mysore" value="info" />
+          </ActionList>
+          {/* <ActionListItem
               // @ts-expect-error: for storybook we're typing icon as sting but its actually IconComponent
               leading={<ActionListItemIcon icon={actionListItemIcon} />}
               title={title}
@@ -345,7 +351,7 @@ const DropdownTemplate: ComponentStory<typeof Playground> = (args) => {
               title="Info"
               value="info"
             />
-          </ActionList>
+          </ActionList> */}
         </DropdownOverlay>
       </Dropdown>
     </BaseBox>
