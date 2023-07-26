@@ -10,7 +10,8 @@
     "packages": [
       "packages/blade",
       "packages/token-publisher",
-      "packages/razorsharp"
+      "packages/razorsharp",
+      "packages/storybook-react"
     ],
     "nohoist": [
       "**"

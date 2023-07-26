@@ -1,0 +1,25 @@
+{
+  "extends": "../blade/tsconfig.json",
+  "include": ["../blade/src"],
+  "exclude": [
+    "../blade/**/**.stories.tsx",
+    "../blade/**/**.stories.internal.tsx",
+    "../blade/**/**.native.ts",
+    "../blade/**/**.native.tsx",
+    "../blade/**/**.native.test.ts",
+    "../blade/**/**.native.test.tsx"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~utils": ["../blade/src/utils"],
+      "~utils/*": ["../blade/src/utils/*"],
+      "~components/*": ["../blade/src/components/*"],
+      "~tokens/*": ["../blade/src/tokens/*"],
+      "~src/*": ["../blade/src/*"]
+    },
+    // In Blade side we are targetting `.web` types
+    // We can't add both `.native` & `.web` at once.
+    "moduleSuffixes": [".web", ""]
+  }
+}
