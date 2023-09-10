@@ -54,18 +54,18 @@ This is how the typography will look after the implementation of type scales.
 
 # Motivation
 ### **Why do we need a type scale?**
-We need our users to access our products anywhere, anytime. To make sure they can do so, we need to be present on almost every device possible especially on portables (mobiles & tablets). Every device offers a different experience and we need to make sure that we are flexible in that case. One of the major aspects of that experience is **readability** and therefore we are focusing on **typography scaling** across multiple devices.
+We need our users to access our products anywhere, anytime. To make sure they can do so, we need to be present on almost every device possible, especially on portables (mobiles & tablets). Every device offers a different experience and we need to make sure that we are flexible in that case. One of the major aspects of that experience is **readability** and therefore we are focusing on **typography scaling** across multiple devices.
 
 ### **Use Cases**
-There can be several use-cases when a user wants to access the dashboard on multiple devices. Few of those can be,
-- **On Mobiles** (user can check for settlement numbers while commuting/traveling in a metro/bus)
+There can be several use cases when a user wants to access the dashboard on multiple devices. Few of those can be,
+- **On Mobiles** (user can check for settlement numbers while commuting/travelling in a metro/bus)
 - **On Tablets** (user can capture a payment while on-the-go to their home back from the office)
 - **On Desktops** (user can request for access to the international payment via the dashboard)
 
-Or in-general a user can visit the company's marketing/landing page and consume information about us and our offerings.
+Or in general a user can visit the company's marketing/landing page and consume information about us and our offerings.
 
 ### **Examples from the current system**
-Here are a few examples in the current system.
+Here are a few examples of the current system.
 - **Dashboard Route - Desktop vs. Mobile:**
 ![Dashboard Route: Desktop vs. Mobile](./images/typography/dashboard-route-mobile-desktop-comparison.png)
 
@@ -95,12 +95,12 @@ We are following a [**Major Second**](https://type-scale.com/?size=14&scale=1.12
 ```
 
 ### **Base font size**
-After auditing the whole product it came out that we are mostly using `13px` & `14px` as a base font-size on the body text. For the internal products, it is better to go with **`14px`** as a base font-size. And for small screens (mobile) it is better to go with **`15px`** as a base font-size. Because for dashboards the content is pretty dense and we need to maintain a small font-size ratio compared to marketing/landing pages. This will help the users to consume more content into a readable format. Although, we can still play with spacings so that it doesn't feel much complex.
+After auditing the whole product it came out that we are mostly using `13px` & `14px` as a base font-size on the body text. For the internal products, it is better to go with **`14px`** as a base font-size. And for small screens (mobile) it is better to go with **`15px`** as a base font-size. Because for dashboards the content is pretty dense and we need to maintain a small font-size ratio compared to marketing/landing pages. This will help the users to consume more content in a readable format. Although, we can still play with spacings so that it doesn't feel too complex.
 
 ### **Line Height**
 Line heights also plays a significant role in the whole typography spectrum. If the font-size is smaller the text will be cramped and difficult to read, instead if it is larger the eyes can get lost. According to [WCAG](https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html), the height factor should be between `150% - 200%` of the font-size. But instead of blindly copying these values, we should also consider the font-face and platform on which this is getting rendered. Therefore, for optimal readability & accessibility aim for about `125% - 160%` height-factor.
 
-A `height-factor` is the unit which tells you that how many times the font-size should be multiplied by it to get actual `line-height`.
+A `height-factor` is the unit that tells you how many times the font-size should be multiplied by it to get actual `line-height`.
 
 For example,
 ```
@@ -130,8 +130,8 @@ And will round-off the resulting value.
 
 ### **Current Limitations**
 There are two major limitations while scaling typography to multiple breakpoints,
-1. **Need of a different typography scale.** If any product wants to bring in their own typography scale then they need to override the current typography scale (without addition/subtraction of any levels) provided by blade. This also means that you cannot add/remove levels from the base scale. This is currently being looked at by the comm. design team.
-2. **Same type scaling across all devices/breakpoints.** After the type scale is defined, we also need to define the scale across multiple device sizes. There are few approaches that we've came up with and after research from other DS/products like *GitHub*, *Eightshapes*, *Paystack*, *Stripe*, and a few more we've observed that for dashboards generally tweaking the **heading** sizes works best and the base font-size will remain same for all other devices/breakpoints.
+1. **Need for a different typography scale.** If any product wants to bring in their own typography scale then they needs to override the current typography scale (without addition/subtraction of any levels) provided by the blade. This also means that you cannot add/remove levels from the base scale. This is currently being looked at by the comm. design team.
+2. **Same type scaling across all devices/breakpoints.** After the type scale is defined, we also need to define the scale across multiple device sizes. There are a few approaches that we've come up with and after research from other DS/products like *GitHub*, *Eightshapes*, *Paystack*, *Stripe*, and a few more we've observed that for dashboards generally tweaking the **heading** sizes work best and the base font-size will remain same for all other devices/breakpoints.
 
 We'll look into the responsive type scale and see what approach fits best for our use case.
 
@@ -163,7 +163,7 @@ This is how it will look like across desktop & mobile.
 
 # Drawbacks/Constraints
 Few things to consider here:
-- As we are moving towards adaptive-layout so we need to consider - should we also support responsive layout? For both cases, I don't see any challenges as the typography system remains the same.
+- As we are moving towards adaptive-layout so we need to consider - should we also support a responsive layout. For both cases, I don't see any challenges as the typography system remains the same.
 - If any product wants to bring in their own typography scale then they need to override the current typography scale provided by blade. This also means that you cannot add/remove levels from the base scale
 
 # Alternatives
@@ -172,7 +172,7 @@ Few other things we considered:
 ### **Similar vertical & horizontal ratio across multiple breakpoints**
 In this approach, we use the same ratio of `1.125` (Major Second) down across each breakpoint. Pretty straightforward, we multiply everything down and across by the same ratio.
 
-This doesn't suit our product use case, as on mobile we want a different scale which is specifically designed for mobile experience. For example:
+This doesn't suit our product use case, as on mobile we want a different scale which is specifically designed for the mobile experience. For example:
 
 For devices like, **desktops/tablets** if font-size for `<h6> = 16px` than, for **mobiles** font-size for `<h6> = (16 / 1.125) = 14px`.
 
@@ -190,7 +190,7 @@ This is viewport-based scaling and uses the `calc()` CSS function, which allows 
 
 ![Fluid Typography](./images/typography/typography-css-responsive-type-scale.png)
 
-This type of scale is a bit complex and very dynamic, as per our use case we don't need that much of flexibility in typography across devices.
+This type of scale is a bit complex and very dynamic, as per our use case we don't need that much flexibility in typography across devices.
 
 > [Read here](https://blog.logrocket.com/the-elements-of-responsive-typography/) for more info on fluid typography.
 
